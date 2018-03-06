@@ -49,6 +49,15 @@
                     <properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
                 </authorization>
             </security-realm>
+
+            <security-realm name="UndertowRealm">
+                <server-identities>
+                    <ssl>
+                        <keystore path="/opt/keycloak/certificate/keycloak.jks" keystore-password="password" />
+                    </ssl>
+                </server-identities>
+            </security-realm>
+
         </security-realms>
         <audit-log>
             <formatters>
@@ -471,6 +480,11 @@
                     <location name="/" handler="welcome-content"/>
                     <http-invoker security-realm="ApplicationRealm"/>
                 </host>
+
+                <https-listener name="https" socket-binding="https" security-realm="UndertowRealm"/>
+                <http-listener name="sslterminated" socket-binding="http-sslterminated"
+                    proxy-address-forwarding="true" redirect-socket="proxy-https"/>
+
             </server>
             <servlet-container name="default">
                 <jsp-config/>
@@ -569,5 +583,9 @@
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
+
+        <socket-binding name="http-sslterminated" port="${jboss.http-sslterminated.port:8480}"/>
+        <socket-binding name="proxy-https" port="443"/>
+
     </socket-binding-group>
 </server>
