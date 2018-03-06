@@ -24,3 +24,6 @@ You might find this a good way to get a packstack installed OpenStack:
     VBoxManage natnetwork add --netname packstack --network 172.16.1.0/24 --enable
 
     vagrant up
+
+    # Recovery from the reboot seems flakey, so just retry if you see that
+    vagrant up --provision 
