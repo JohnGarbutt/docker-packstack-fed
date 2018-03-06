@@ -2,16 +2,11 @@
 
 ## Install
 
-To build the image:
+To build the image, run it, and test it out:
 
     docker image build -t keycloak_test .
-
-To run things:
-
+    # docker stop keycloak_test && docker rm keycloak_test
     docker run -dt --name keycloak_test keycloak_test
-
-To explore try:
-
     docker exec -it keycloak_test bash
 
 ## Dependency
