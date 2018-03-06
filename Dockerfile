@@ -33,9 +33,12 @@ EXPOSE 8443
 EXPOSE 9990
 
 # for development setup, create self-signed cert
-RUN mkdir -p /opt/keycloak/certificate/
-#    && keytool -genkey -alias keycloak.fed.local -keyalg RSA -keystore keycloak.jks -validity 10950 \
-#    && cp keycloak.jks /opt/keycloak/certificate/
+RUN mkdir -p /opt/keycloak/certificate/ \
+    && keytool -genkey -alias keycloak.fed.local -keyalg RSA \
+               -keystore keycloak.jks -validity 10950 \
+               -noprompt -storepass password -keypass password \
+               -dname "CN=keycloak.stackhpc.com, OU=ID, O=StackHPC, L=Cambridge, S=Cambs, C=GB"\
+    && mv keycloak.jks /opt/keycloak/certificate/
 
 #COPY standalone.xml /opt/keycloak/keycloak-3.4.3.Final/standalone/configuration/standalone.xml
 #
