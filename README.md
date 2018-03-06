@@ -31,3 +31,7 @@ You might find this a good way to get a packstack installed OpenStack:
 
     # Recovery from the reboot seems flakey, so just retry if you see that
     vagrant up --provision 
+
+You can using (admin,admin) to log into horizon by visiting:
+
+    http://packstack.vagrant
