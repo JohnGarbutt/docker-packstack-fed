@@ -4,15 +4,15 @@
 
 To build the image:
 
-    docker image build -t packstack-fed .
+    docker image build -t keycloak_test .
 
 To run things:
 
-    docker run -dt --name packstack-fed packstack-fed
+    docker run -dt --name keycloak_test keycloak_test
 
 To explore try:
 
-    docker exec -it packstack-fed bash
+    docker exec -it keycloak_test bash
 
 ## Dependency
 
