@@ -6,8 +6,12 @@ To build the image, run it, and test it out:
 
     docker image build -t keycloak_test .
     # docker stop keycloak_test && docker rm keycloak_test
-    docker run -dt --name keycloak_test keycloak_test
+    docker run -dt --name keycloak_test --hostname keycloak.stackhpc.com --publish 8480:8480 keycloak_test
     docker exec -it keycloak_test bash
+
+You can see keycloak in your browser, login with (admin,password):
+
+    http://localhost:8480
 
 ## Dependency
 

@@ -44,9 +44,9 @@ RUN mkdir -p /opt/keycloak/certificate/ \
     && mv keycloak.jks /opt/keycloak/certificate/
 
 COPY standalone.xml /opt/keycloak/keycloak-3.4.3.Final/standalone/configuration/standalone.xml
+COPY setup.sh /opt/keycloak/keycloak-3.4.3.Final/setup.sh
 
-#RUN bash /opt/keycloak/keycloak-2.4.0.Final/bin/standalone.sh -b=0.0.0.0 & \
-#    && /opt/keycloak/keycloak-2.4.0.Final/bin/add-user-keycloak.sh -r master -u admin -p password \
-#    && bash kill %1
+RUN /opt/keycloak/keycloak-3.4.3.Final/setup.sh
 
-CMD /bin/bash
+#CMD /bin/bash
+CMD /opt/keycloak/keycloak-3.4.3.Final/bin/standalone.sh -b=0.0.0.0
