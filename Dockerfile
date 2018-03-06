@@ -19,6 +19,28 @@ RUN yum makecache fast \
     && yum clean all \
     && rm -rf /var/cache/yum
 
-RUN packstack --allinone
+# Install Keycloak
+# https://access.redhat.com/solutions/3010401
 
+RUN yum -y install unzip
 
+RUN mkdir -p /opt/keycloak/keycloak-3.4.3.Final/ \
+    && curl -O https://downloads.jboss.org/keycloak/3.4.3.Final/keycloak-3.4.3.Final.zip \
+    && unzip keycloak-3.4.3.Final.zip -d /opt/keycloak/
+
+EXPOSE 8080
+EXPOSE 8443
+EXPOSE 9990
+
+# for development setup, create self-signed cert
+RUN mkdir -p /opt/keycloak/certificate/
+#    && keytool -genkey -alias keycloak.fed.local -keyalg RSA -keystore keycloak.jks -validity 10950 \
+#    && cp keycloak.jks /opt/keycloak/certificate/
+
+#COPY standalone.xml /opt/keycloak/keycloak-3.4.3.Final/standalone/configuration/standalone.xml
+#
+#RUN bash /opt/keycloak/keycloak-2.4.0.Final/bin/standalone.sh -b=0.0.0.0 & \
+#    && /opt/keycloak/keycloak-2.4.0.Final/bin/add-user-keycloak.sh -r master -u admin -p password \
+#    && bash kill %1
+
+CMD /bin/bash
