@@ -24,6 +24,7 @@ services:
       - 8081:80
       - 8082:443
     command:
+      - --unattended
       - --realm=STACKHPC.COM
       - --ds-password=db_password
       - --admin-password=password
