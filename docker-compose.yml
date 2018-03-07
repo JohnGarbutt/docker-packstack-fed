@@ -22,7 +22,7 @@ services:
       - /tmp
     ports:
       - 8081:80
-      - 8082:443
+      - 443:443
     command:
       - --unattended
       - --realm=STACKHPC.COM
