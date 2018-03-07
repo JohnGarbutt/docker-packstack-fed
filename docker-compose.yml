@@ -13,6 +13,7 @@ services:
     container_name: freeipa
     image: freeipa/freeipa-server:centos-7
     hostname: freeipa.stackhpc.com
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ipa_data:/data:Z
@@ -23,7 +24,6 @@ services:
       - 8081:80
       - 8082:443
     command:
-      - -b 0.0.0.0
       - --realm=TEST.FREEIPA.STACKHPC.COM
       - --ds-password=db_password
       - --admin-password=password
