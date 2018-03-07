@@ -24,9 +24,11 @@ services:
       - 8081:80
       - 8082:443
     command:
-      - --realm=TEST.FREEIPA.STACKHPC.COM
+      - --realm=STACKHPC.COM
       - --ds-password=db_password
       - --admin-password=password
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
 
   keycloak:
     container_name: keycloak
@@ -39,4 +41,4 @@ services:
       - 8080:8080
 
 volumes:
-    ipa_data:
+  ipa_data:
