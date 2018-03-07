@@ -19,6 +19,14 @@ services:
     tmpfs:
       - /run
       - /tmp
+    ports:
+      - 8081:80
+      - 8082:443
+    command:
+      - -b 0.0.0.0
+      - --realm=TEST.FREEIPA.STACKHPC.COM
+      - --ds-password=db_password
+      - --admin-password=password
 
   keycloak:
     container_name: keycloak
